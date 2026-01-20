@@ -62,7 +62,7 @@ async function fetchTasks() {
   const user = await getUser();
   if (!user) return;
 
-  const res = await fetch(`http://localhost:3000/todos/${user.id}`);
+  const res = await fetch(`https://todo-backend-vw01.onrender.com/todos/${user.id}`);
   const data = await res.json();
 
   renderTasks(data);
@@ -74,7 +74,7 @@ async function addTask() {
 
   const user = await getUser();
 
-  await fetch("http://localhost:3000/todos", {
+  await fetch("https://todo-backend-vw01.onrender.com/todos", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -91,7 +91,7 @@ async function editTask(id, oldText) {
   const newText = prompt("Edit task", oldText);
   if (!newText) return;
 
-  await fetch(`http://localhost:3000/todos/${id}`, {
+  await fetch(`https://todo-backend-vw01.onrender.com/todos/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ task: newText })
@@ -101,7 +101,7 @@ async function editTask(id, oldText) {
 }
 
 async function deleteTask(id) {
-  await fetch(`http://localhost:3000/todos/${id}`, {
+  await fetch(`https://todo-backend-vw01.onrender.com/todos/${id}`, {
     method: "DELETE"
   });
 
@@ -144,7 +144,7 @@ function renderTasks(tasks) {
     list.appendChild(li);
   });
 }
-  
+
 function formatDateTime(iso) {
   if (!iso) return "";
   const date = new Date(iso);
